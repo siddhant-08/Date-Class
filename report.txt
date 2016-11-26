@@ -1,0 +1,218 @@
+#########################################1. >>>Checking Constructors of Date
+
+(i) --Date::Date(Day,Month,Year)
+Random valid case:
+31 - Dec - 49
+29 - Feb - 16
+31 - Jan - 13
+01 - Jan - 01
+
+Invalid cases:
+29-Feb-2015
+29 feb on non-leap year!
+31-Dec-1949
+date out of range
+01-Jan-2050
+date out of range
+31-Apr-2015
+Domain Error
+31-Sep-2015
+Domain Error
+31-13-2015
+invalid value of date
+34-Apr-2015
+invalid value of date
+----------------------------------------
+(ii) Date::Date()  default constructor
+06 - Mar - 16
+----------------------------------------
+(iii) Date::Date(Date&)  copy constructor
+d1= 06 - Mar - 16
+Date d2= new Date(*d1)
+d2= 06 - Mar - 16
+Date d3=d1
+d3= 06 - Mar - 16
+####################################
+
+2. >>> checking DateFormat and Date(const char*) constructor of Date
+(i) Checking constructor-> DateFormat::DateFormat(const char*)-
+invalid formats:
+-random word- 'erascfw'
+invalid format of date
+'dd-mm-yyyy-' (more than 2 hyphens)
+invalid format of date
+'d-mm' less than two hyphen
+invalid format of date
+NULL
+No string entered
+
+Empty string 
+invalid format of date
+ddd-mm-yy 
+invalid format for day
+dd-mm-yyy
+invalid format for year
+d-mmm-y
+invalid format for year
+x-zz-wwww
+invalid format of date
+------Trying some valid formats--
+dd-mm-yyyy
+d-mm-yyyy
+-mm-yyyy (DayFormat is NULL)
+dd--yyyy (MonthFormat is NULL
+dd-m-yyyy
+dd-mm-yyyy
+dd-mmm-yyyy
+dd-mm-  (YearFormat is NULL)
+dd-mm-yy
+dd-mm-yyyy
+------------------------------------
+(ii)Checking Date::Date(const char*) constructor
+Current format is dd-mm-yy
+a. 22-1-2016
+Wrong year-format entered
+b. 22-1-16
+invalid month format
+c. 9-01-16
+invalid day-format
+d. 29-02-15
+domain error!!
+e. 33-01-15
+invalid value of date!!
+f. 29-02-16
+29 - 02 - 16
+change format to d-m-yy
+a. 22-1-2016
+Wrong year-format entered
+b. 22-1-16
+22 - 1 - 16
+c. 9-01-
+Wrong year-format entered
+d. 09-02-15
+invalid day-format
+e. 9-2-15
+9 - 2 - 15
+
+f. 29-2-16
+29 - 2 - 16
+change format to d-m-yyyy
+a. 22-1-2016
+22 - 1 - 2016
+b. 22-1-16
+Wrong year-format entered
+c. 9-01-
+Wrong year-format entered
+d. 09-2-2015
+invalid day-format
+e. 9-2-15
+Wrong year-format entered
+f. 29-2-2015
+domain error!!
+--------------------------------------
+(iii)Testing DateFormat::DateFormat(const char*df ,const char* mf,const char* yf) 
+some invalid cases:
+NULL
+No string entered
+
+dd-mm-yyy
+invalid format of date
+ddd-mmm-yy
+invalid format of day
+empyty-empty-empty
+invalid format of day
+
+ valid cases
+dd-mm-yyyy
+dd-mm-yy
+d-mm-yyyy
+d-m-yy
+dd-mmm-yyyy
+-mm-yy
+dd--yyyy
+dd-m-
+########################################
+
+Checking unary operators
+current date- 6 - 3 - 2016
+++du 7 - 3 - 2016
+
+du++ 14 - 3 - 2016
+
+du-- 7 - 3 - 2016
+
+--du 6 - 3 - 2016
+
+current date- 30 - 12 - 2049
+++du 31 - 12 - 2049
+
+du++ out of range!!
+current date- 2 - 1 - 1950
+--du 1 - 1 - 1950
+
+du-- out of range!!
+current date- 1 - 3 - 2016
+--du 29 - 2 - 2016
+
+du-- 22 - 2 - 2016
+
+#####################################
+
+checking binary operators:
+ checking '-' 
+3-3-2016  - 29-2-2016  = 5
+29-2-2016  - 3-3-2016  = 5
+3-3-2016  - 2-6-1988  = 10136
+2-6-1988  - 3-3-2016  = 10136
+-----------------------
+checking ' + ' 
+3-3-2016  +  5  = 8 - 3 - 2016
+
+28-2-2016  +  6  = 5 - 3 - 2016
+
+31-12-2049  +  1  = out of range!!
+31-12-2016  +  1  = 1 - 1 - 2017
+
+28-2-2016  +  1  = 29 - 2 - 2016
+
+######################################
+checking relational ops
+comparing the following dates
+da 1 - 1 - 2016
+db 29 - 2 - 2016
+dc 31 - 5 - 2015
+dd 1 - 1 - 2016
+da==db 0
+da<db 1
+da<dc 0
+dd<da 0
+dd<=da 1
+da==dd 1
+dd>da 0
+dd>=da 1
+da!=dd 0
+############################
+checking cast operators
+1. WeekDay
+6 - 3 - 2016
+WeekDay 0
+1 - 1 - 2016
+WeekDay 5
+31 - 12 - 2016
+WeekDay 6
+
+2. WeekNumber
+1 - 1 - 2015
+WeekNumber 1
+1 - 1 - 2016
+WeekNumber 53
+31 - 12 - 2016
+WeekNumber 52
+6 - 3 - 2016
+WeekNumber 9
+
+3.Month
+29 - 2 - 2016
+Month 2
+24 - 3 - 2034
+Month 3
